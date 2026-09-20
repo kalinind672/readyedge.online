@@ -14,7 +14,6 @@
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
             --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --error-color: #ef4444;
         }
 
         body {
@@ -224,6 +223,15 @@
             font-size: 32px;
             margin-bottom: 24px;
         }
+        
+        .expert-text p {
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+        
+        .expert-text strong {
+            color: #fff;
+        }
 
         /* Pricing */
         .pricing {
@@ -303,15 +311,18 @@
             font-weight: bold;
         }
 
-        /* FAQ */
+        /* FAQ Accordion */
         .faq {
-            padding: 80px 0;
+            padding: 80px 0 120px;
             background-color: var(--secondary-bg);
         }
 
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .faq-item {
-            margin-bottom: 30px;
-            padding-bottom: 30px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
@@ -319,84 +330,43 @@
             border-bottom: none;
         }
 
-        .faq-item h4 {
-            font-size: 20px;
-            margin-bottom: 12px;
+        .faq-item details {
+            padding: 24px 0;
+        }
+
+        .faq-item summary {
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            outline: none;
+        }
+        
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--accent-color);
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item details[open] summary::after {
+            content: '−';
         }
 
         .faq-item p {
+            margin: 16px 0 0 0;
             color: var(--text-muted);
-        }
-
-        /* Form / Robokassa Checkout Integration */
-        .checkout-section {
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .checkout-form-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: var(--secondary-bg);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: left;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background-color: rgba(0,0,0,0.2);
-            color: #fff;
-            font-size: 16px;
-            box-sizing: border-box;
-            font-family: var(--font-family);
-        }
-        
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 16px;
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-        
-        .checkbox-container input[type="checkbox"] {
-            margin-top: 3px;
-            margin-right: 12px;
-            cursor: pointer;
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-        }
-
-        .robokassa-security {
-            margin-top: 24px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 12px;
-            color: var(--text-muted);
-            text-align: center;
+            line-height: 1.6;
+            padding-right: 30px;
         }
 
         /* Footer */
@@ -462,8 +432,8 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Подготовься к assessment, а не надейся на удачу</h1>
-            <p>Реалистичные симуляции, точная диагностика, AI-коуч и персональный план подготовки для Middle/Senior специалистов</p>
+            <h1>Подготовься к assessment,<br>а не надейся на удачу</h1>
+            <p>Реалистичные симуляции, точная диагностика, коуч и персональный план подготовки для Middle/Senior специалистов</p>
             <a href="https://t.me/readyedge_online" target="_blank" class="btn" style="width: auto; padding: 16px 40px;">Пройти экспресс-диагностику</a>
         </div>
     </section>
@@ -502,7 +472,7 @@
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <h3>Обратная связь</h3>
-                    <p>Edge Coach анализирует алгоритм ваших решений, объясняет логику и выстраивает стратегию для реального теста</p>
+                    <p>Наш коуч анализирует алгоритм ваших решений, объясняет логику и выстраивает стратегию для реального теста</p>
                 </div>
             </div>
         </div>
@@ -513,10 +483,10 @@
             <div class="expert-photo"></div>
             <div class="expert-text">
                 <h2>Кто управляет вашей подготовкой</h2>
-                <p>Меня зовут <strong>Дмитрий Калинин</strong>. Мой подход к подготовке кандидатов кардинально отличается от того, что предлагают HR-теоретики или студенты с хорошим знанием математики. Я оцениваю ваш потенциал с позиции нанимающего топ-менеджера</p>
-                <p>В моем бэкграунде — управление аналитическими и финансовыми дирекциями в крупнейших компаниях: от должности Director of Analytics в Zolla и работы в FP&A Beeline до поста директора по бизнес-анализу и контроллингу в T2, где мы успешно реализовали масштабное репозиционирование бренда. Почти два года являюсь финансовым директором (CFO) креативного агентства PDT</p>
-                <p>Мой опыт включает работу в коммерческом банкинге, маркетинговом департаменте Sharp Electronics GMBH. Академическая база (ВШБ МГУ и МГТУ им. Н.Э. Баумана) в сочетании с 15+ годами в корпоративном секторе позволяет мне понимать архитектуру любого бизнес-кейса</p>
-                <p>Я не просто знаю, как решить числовой тест. Я знаю, какие именно качества, структуру мышления и логику крупный бизнес ищет в кандидатах на Middle и Senior позиции</p>
+                <p>Меня зовут <strong>Дмитрий Калинин</strong>. Мой подход к подготовке кандидатов кардинально отличается от того, что предлагают HR-теоретики или студенты с хорошим знанием математики. Я оцениваю ваш потенциал с позиции нанимающего топ-менеджера.</p>
+                <p>В моем бэкграунде — управление аналитическими, финансовыми и коммерческими дирекциями в крупнейших компаниях. Я работал в FP&A Beeline, занимал пост директора по бизнес-анализу и контроллингу в T2 (бывший Tele2) и должность Director of Analytics в Zolla. В моем портфолио: ответственность за региональное развитие, участие в крупнейшей интеграции телеком-активов, реализация масштабного HR-проекта Teleport (оптимизация процессов) и успешная интеграция ERP-систем. Почти два года я являюсь финансовым директором (CFO) креативного агентства PDT.</p>
+                <p>Мой опыт также включает управление маркетингом в Sharp Electronics GMBH и работу в коммерческом банкинге. Академическая база МГТУ им. Н.Э. Баумана и ВКИЯ МИД РФ дополняется стажировкой в Mosbach Duale Hochschule на предприятиях Audi, Recaro, Dieffenbacher. Всё это в сочетании с 15+ годами в корпоративном секторе позволяет мне понимать архитектуру любого бизнес-кейса.</p>
+                <p>Я не просто знаю, как решить числовой тест. Я знаю, какие именно качества, структуру мышления и логику крупный бизнес ищет в кандидатах на Middle и Senior позиции.</p>
             </div>
         </div>
     </section>
@@ -533,9 +503,9 @@
                     <ul class="price-features">
                         <li>8 тренировочных итераций</li>
                         <li>Детальный офлайн-разбор</li>
-                        <li>Рекомендации от Edge Coach</li>
+                        <li>Рекомендации от коуча</li>
                     </ul>
-                    <a href="#checkout" class="btn">Внести аванс 30% (597 ₽)</a>
+                    <a href="https://t.me/readyedge_online" target="_blank" class="btn">Внести аванс 30% (600 ₽)</a>
                 </div>
 
                 <!-- Intensive 48h -->
@@ -549,7 +519,7 @@
                         <li>Экспресс-стратегия прохождения</li>
                         <li>Фокус на слабых местах</li>
                     </ul>
-                    <a href="#checkout" class="btn">Внести аванс 30% (1 497 ₽)</a>
+                    <a href="https://t.me/readyedge_online" target="_blank" class="btn">Внести аванс 30% (1 500 ₽)</a>
                 </div>
 
                 <!-- Executive Individual -->
@@ -563,51 +533,8 @@
                         <li>Репетиция ассессмент-центра</li>
                         <li>Выстраивание логики ответов</li>
                     </ul>
-                    <a href="#checkout" class="btn">Внести аванс 50% (7 495 ₽)</a>
+                    <a href="https://t.me/readyedge_online" target="_blank" class="btn">Внести аванс 50% (7 500 ₽)</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Checkout Mockup (Robokassa style) -->
-    <section class="checkout-section" id="checkout">
-        <div class="container">
-            <h2 class="section-title">Оформление заказа</h2>
-            <div class="checkout-form-container">
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Интеграция с Робокассой будет работать после привязки API ключей.');">
-                    
-                    <div class="input-group">
-                        <label for="email">E-mail (обязательно, для отправки чека)</label>
-                        <input type="email" id="email" name="email" required placeholder="name@example.com">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="phone">Номер телефона</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 000-00-00">
-                    </div>
-
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="offer" name="offer" required>
-                        <label for="offer">Я ознакомился(лась) и принимаю условия <a href="/docs/oferta.pdf" target="_blank">Публичной оферты</a></label>
-                    </div>
-                    
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="privacy" name="privacy" required>
-                        <label for="privacy">Я ознакомился(лась) с <a href="/docs/pd.pdf" target="_blank">Политикой обработки персональных данных</a> и даю <a href="/docs/soglasie.pdf" target="_blank">согласие на обработку персональных данных</a></label>
-                    </div>
-
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="marketing" name="marketing">
-                        <label for="marketing">Я согласен(на) получать <a href="/docs/adv.pdf" target="_blank">рекламные сообщения ReadyEdge</a> (необязательно)</label>
-                    </div>
-
-                    <button type="submit" class="btn" style="margin-top: 20px;">Перейти к безопасной оплате</button>
-
-                    <div class="robokassa-security">
-                        <p style="margin-bottom: 8px;">Безопасность платежей обеспечивается процессинговым центром Robokassa. Все операции защищены сертификатом PCI DSS. Поддерживаются карты МИР, Visa, Mastercard и оплата по СБП.</p>
-                        <img src="https://robokassa.com/Content/Images/robokassa_logo.svg" alt="Robokassa" style="height: 20px; opacity: 0.5;">
-                    </div>
-                </form>
             </div>
         </div>
     </section>
@@ -615,19 +542,92 @@
     <section class="faq">
         <div class="container">
             <h2 class="section-title">Частые вопросы</h2>
-            <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-container">
+                
                 <div class="faq-item">
-                    <h4>Узнает ли мой будущий работодатель, что я готовился на платформе</h4>
-                    <p>Абсолютно исключено. Мы гарантируем полную конфиденциальность. Мы не передаем данные о Readiness Score третьим лицам и корпорациям. Ваша подготовка — это ваш личный инвестиционный проект</p>
+                    <details>
+                        <summary>Узнает ли мой будущий работодатель, что я готовился на платформе?</summary>
+                        <p>Абсолютно исключено. Мы гарантируем полную конфиденциальность. Мы не передаем данные о Readiness Score третьим лицам и корпорациям. Ваша подготовка — это ваш личный инвестиционный проект.</p>
+                    </details>
                 </div>
+
                 <div class="faq-item">
-                    <h4>Смогу ли я пройти очный Verification Test под наблюдением</h4>
-                    <p>Да. Наша ценность — Preparation over shortcuts. Мы не продаем слитые ответы (которые регулярно меняются). Мы ставим вам навык, учим отсекать лишние данные в таблицах и быстро находить логические связи. Наработав этот скилл, вы легко сдадите контрольный тест под любым прокторингом</p>
+                    <details>
+                        <summary>Смогу ли я пройти очный Verification Test под наблюдением?</summary>
+                        <p>Да. Наша ценность — Preparation over shortcuts. Мы не продаем слитые ответы (которые регулярно меняются). Мы ставим вам навык, учим отсекать лишние данные в таблицах и быстро находить логические связи. Наработав этот скилл, вы легко сдадите контрольный тест под любым прокторингом.</p>
+                    </details>
                 </div>
+
                 <div class="faq-item">
-                    <h4>Как работает система разделенной оплаты</h4>
-                    <p>Мы работаем на доверии и результат. На базовых тарифах вы вносите символические 30% аванса, чтобы получить доступ к диагностике. Основная сумма в 70% оплачивается только перед финальным этапом подготовки — когда вы уже увидели динамику своего роста</p>
+                    <details>
+                        <summary>Как работает система разделенной оплаты?</summary>
+                        <p>Мы работаем на доверии и результат. На базовых тарифах вы вносите символические 30% аванса, чтобы зафиксировать намерение и получить доступ к диагностике. Основная сумма (70%) оплачивается только перед финальным этапом подготовки — когда вы уже увидели динамику своего роста.</p>
+                    </details>
                 </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Для каких позиций подходит ваша подготовка?</summary>
+                        <p>Наши программы разработаны специально для соискателей на позиции уровня Middle, Senior, а также для линейных руководителей и топ-менеджмента (C-level). Мы не занимаемся массовым рекрутментом стажеров, а фокусируемся на сложных кейсах и высоких ставках.</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Какие типы тестов вы покрываете?</summary>
+                        <p>Мы готовим к числовым (Numerical), вербальным (Verbal), логическим (Logical) и абстрактным тестам, а также помогаем с подготовкой к опросникам личности (например, PI Behavioral Assessment). Наши симуляции адаптированы под стандарты SHL, Talent Q, ЭКОПСИ и Ontarget.</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Можно ли успеть подготовиться за один день?</summary>
+                        <p>Да. Специально для таких случаев у нас есть тариф «Intensive 48h». Мы проведем экспресс-диагностику, выявим 2-3 ваших главных слабых места и дадим сжатую стратегию прохождения теста. Это не заменит фундаментальной подготовки, но существенно снизит риск провала.</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Вы помогаете проходить тесты вместо меня?</summary>
+                        <p>Нет, мы принципиально не оказываем услуги прохождения тестов за кандидата. Во-первых, большинство серьезных компаний проводят верификационное тестирование в офисе или под камеру. Во-вторых, наша задача — прокачать ваше аналитическое мышление, чтобы вы уверенно чувствовали себя не только на тесте, но и на финальном интервью с топ-менеджментом.</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>В чем отличие от бесплатных тестов в интернете?</summary>
+                        <p>Бесплатные тесты просто показывают правильный ответ. Наша система объясняет алгоритм: почему нужно было смотреть именно на этот столбец графика, как быстрее посчитать пропорцию в уме и где авторы теста расставили логические ловушки.</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Как проходит общение с коучем?</summary>
+                        <p>Все коммуникации и разборы происходят в удобном для вас формате через наш Telegram-канал. Для базовых тарифов это подробные текстовые и голосовые разборы ваших решений. На тарифе Executive Individual проводятся полноценные онлайн-встречи (репетиции интервью и ассессмент-центров).</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Нужно ли скачивать специальные программы для тренировок?</summary>
+                        <p>Нет. Все симуляции и тренировочные материалы доступны в вашем браузере или отправляются напрямую в Telegram. Вы можете готовиться с любого устройства: компьютера, планшета или смартфона.</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Что будет после внесения аванса?</summary>
+                        <p>После оплаты аванса через нашего Telegram-бота, за вами закрепляется персональный коуч. Вы сразу получаете ссылку на стартовую диагностику (Readiness Score). После ее прохождения мы формируем ваш индивидуальный план тренировок.</p>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Можно ли вернуть деньги, если я не пройду финальный тест в компании?</summary>
+                        <p>Мы даем вам все необходимые инструменты, техники и обратную связь для успешного прохождения, но финальный результат зависит от вашей психологической устойчивости на самом тесте. Гарантировать успешное прохождение невозможно, но мы гарантируем существенный рост вашего Readiness Score по итогам наших симуляций.</p>
+                    </details>
+                </div>
+
             </div>
         </div>
     </section>
@@ -653,8 +653,7 @@
                 <div class="footer-links">
                     <strong>Контакты</strong>
                     <a href="mailto:readyedge.online@gmail.com">E-mail: readyedge.online@gmail.com</a>
-                    <!-- ЗАМЕНИТЕ НОМЕР ТЕЛЕФОНА НИЖЕ НА ВАШ АКТУАЛЬНЫЙ РАБОЧИЙ НОМЕР -->
-                    <a href="tel:+79990000000">Телефон: +7 (999) 000-00-00</a> 
+                    <a href="tel:+79779090909">Телефон: +7 (977) 909-09-09</a> 
                     <a href="https://readyedge.online">Сайт: readyedge.online</a>
                 </div>
 
