@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadyEdge — Prepare smarter. Perform stronger.</title>
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+    <style>
+        :root {
+            --primary-bg: #0b0f19;
+            --secondary-bg: #111827;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --error-color: #ef4444;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            background-image: url('/img/hero-bg.webp');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: top center;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 32px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 100px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(11,15,25,0.3) 0%, var(--primary-bg) 100%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Logos / Providers */
+        .providers {
+            padding: 40px 0;
+            background-color: var(--secondary-bg);
+            text-align: center;
+        }
+
+        .providers h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .logo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            opacity: 0.6;
+        }
+        
+        .logo-grid img {
+            height: 40px;
+            max-width: 150px;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(200%);
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background-color: var(--secondary-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        /* Expert */
+        .expert {
+            padding: 80px 0;
+            background-color: var(--secondary-bg);
+        }
+
+        .expert-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .expert-photo {
+            width: 320px;
+            height: 400px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            background-image: url('/img/expert-photo.webp');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .expert-text h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card.popular {
+            border-color: var(--accent-color);
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background-color: var(--accent-color);
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .price-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .old-price {
+            font-size: 20px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-right: 12px;
+            font-weight: normal;
+        }
+
+        .price-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            flex-grow: 1;
+        }
+
+        .price-features li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .price-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--secondary-bg);
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+        }
+
+        /* Form / Robokassa Checkout Integration */
+        .checkout-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .checkout-form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background-color: rgba(0,0,0,0.2);
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            margin-top: 3px;
+            margin-right: 12px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .robokassa-security {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .footer-links strong {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .expert-content {
+                flex-direction: column;
+            }
+            .expert-photo {
+                width: 100%;
+                height: 350px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="/img/favicon.svg" alt="ReadyEdge">
+                ReadyEdge
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Подготовься к assessment, а не надейся на удачу</h1>
+            <p>Реалистичные симуляции, точная диагностика, AI-коуч и персональный план подготовки для Middle/Senior специалистов</p>
+            <a href="https://t.me/readyedge_online" target="_blank" class="btn" style="width: auto; padding: 16px 40px;">Пройти экспресс-диагностику</a>
+        </div>
+    </section>
+
+    <section class="providers">
+        <div class="container">
+            <h3>Готовим к испытаниям на всех ключевых HR-платформах</h3>
+            <div class="logo-grid">
+                <img src="/img/logo-shl.svg" alt="SHL">
+                <img src="/img/logo-talentq.svg" alt="Talent Q">
+                <img src="/img/logo-ecopsy.svg" alt="ЭКОПСИ">
+                <img src="/img/logo-ontarget.svg" alt="Ontarget">
+                <img src="/img/logo-pli.svg" alt="PLI / PI Cognitive">
+                <img src="/img/logo-exect.svg" alt="Exect">
+            </div>
+            <p style="color: var(--text-muted); font-size: 14px; max-width: 600px; margin: 24px auto 0;">
+                Не имеет значения, какую ссылку прислал HR. Мы идентифицируем тип тестирования, подберем релевантную симуляцию и точечно подготовим вас к таймингу и специфике конкретной платформы
+            </p>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как работает подготовка</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Диагностика</h3>
+                    <p>Проходим стартовую оценку (Readiness Score). Понимаем ваш текущий уровень и слабые места</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Адаптивная практика</h3>
+                    <p>Тренируемся на реалистичных симуляциях в условиях жесткого тайминга с фокусом на ваши ошибки</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Обратная связь</h3>
+                    <p>Edge Coach анализирует алгоритм ваших решений, объясняет логику и выстраивает стратегию для реального теста</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="container expert-content">
+            <div class="expert-photo"></div>
+            <div class="expert-text">
+                <h2>Кто управляет вашей подготовкой</h2>
+                <p>Меня зовут <strong>Дмитрий Калинин</strong>. Мой подход к подготовке кандидатов кардинально отличается от того, что предлагают HR-теоретики или студенты с хорошим знанием математики. Я оцениваю ваш потенциал с позиции нанимающего топ-менеджера</p>
+                <p>В моем бэкграунде — управление аналитическими и финансовыми дирекциями в крупнейших компаниях: от должности Director of Analytics в Zolla и работы в FP&A Beeline до поста директора по бизнес-анализу и контроллингу в T2, где мы успешно реализовали масштабное репозиционирование бренда. Почти два года являюсь финансовым директором (CFO) креативного агентства PDT</p>
+                <p>Мой опыт включает работу в коммерческом банкинге, маркетинговом департаменте Sharp Electronics GMBH. Академическая база (ВШБ МГУ и МГТУ им. Н.Э. Баумана) в сочетании с 15+ годами в корпоративном секторе позволяет мне понимать архитектуру любого бизнес-кейса</p>
+                <p>Я не просто знаю, как решить числовой тест. Я знаю, какие именно качества, структуру мышления и логику крупный бизнес ищет в кандидатах на Middle и Senior позиции</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="tariffs">
+        <div class="container">
+            <h2 class="section-title">Тарифы</h2>
+            <div class="pricing-grid">
+                <!-- Target Prep -->
+                <div class="price-card">
+                    <h3>Target Prep (Спринт)</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px; min-height: 48px;">Для тех, у кого есть запас времени на фундаментальную подготовку. Длительность: 2 недели</p>
+                    <div class="price"><span class="old-price">3 990 ₽</span>1 990 ₽</div>
+                    <ul class="price-features">
+                        <li>8 тренировочных итераций</li>
+                        <li>Детальный офлайн-разбор</li>
+                        <li>Рекомендации от Edge Coach</li>
+                    </ul>
+                    <a href="#checkout" class="btn">Внести аванс 30% (597 ₽)</a>
+                </div>
+
+                <!-- Intensive 48h -->
+                <div class="price-card popular">
+                    <div class="popular-badge">Популярный</div>
+                    <h3>Intensive 48h (Экстренный)</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px; min-height: 48px;">Снижаем риск провала, когда возможность наиболее важна. Длительность: 48 часов</p>
+                    <div class="price"><span class="old-price">9 990 ₽</span>4 990 ₽</div>
+                    <ul class="price-features">
+                        <li>Быстрая диагностика</li>
+                        <li>Экспресс-стратегия прохождения</li>
+                        <li>Фокус на слабых местах</li>
+                    </ul>
+                    <a href="#checkout" class="btn">Внести аванс 30% (1 497 ₽)</a>
+                </div>
+
+                <!-- Executive Individual -->
+                <div class="price-card">
+                    <h3>Executive Individual</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px; min-height: 48px;">Персональный «cockpit» для подготовки к кейсам и интервью на топовые позиции</p>
+                    <div class="price"><span class="old-price">29 990 ₽</span>14 990 ₽</div>
+                    <ul class="price-features">
+                        <li>Полное индивидуальное ведение</li>
+                        <li>Адаптация под конкретную роль</li>
+                        <li>Репетиция ассессмент-центра</li>
+                        <li>Выстраивание логики ответов</li>
+                    </ul>
+                    <a href="#checkout" class="btn">Внести аванс 50% (7 495 ₽)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Mockup (Robokassa style) -->
+    <section class="checkout-section" id="checkout">
+        <div class="container">
+            <h2 class="section-title">Оформление заказа</h2>
+            <div class="checkout-form-container">
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Интеграция с Робокассой будет работать после привязки API ключей.');">
+                    
+                    <div class="input-group">
+                        <label for="email">E-mail (обязательно, для отправки чека)</label>
+                        <input type="email" id="email" name="email" required placeholder="name@example.com">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 000-00-00">
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="offer" name="offer" required>
+                        <label for="offer">Я ознакомился(лась) и принимаю условия <a href="/docs/oferta.pdf" target="_blank">Публичной оферты</a></label>
+                    </div>
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">Я ознакомился(лась) с <a href="/docs/pd.pdf" target="_blank">Политикой обработки персональных данных</a> и даю <a href="/docs/soglasie.pdf" target="_blank">согласие на обработку персональных данных</a></label>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="marketing" name="marketing">
+                        <label for="marketing">Я согласен(на) получать <a href="/docs/adv.pdf" target="_blank">рекламные сообщения ReadyEdge</a> (необязательно)</label>
+                    </div>
+
+                    <button type="submit" class="btn" style="margin-top: 20px;">Перейти к безопасной оплате</button>
+
+                    <div class="robokassa-security">
+                        <p style="margin-bottom: 8px;">Безопасность платежей обеспечивается процессинговым центром Robokassa. Все операции защищены сертификатом PCI DSS. Поддерживаются карты МИР, Visa, Mastercard и оплата по СБП.</p>
+                        <img src="https://robokassa.com/Content/Images/robokassa_logo.svg" alt="Robokassa" style="height: 20px; opacity: 0.5;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h4>Узнает ли мой будущий работодатель, что я готовился на платформе</h4>
+                    <p>Абсолютно исключено. Мы гарантируем полную конфиденциальность. Мы не передаем данные о Readiness Score третьим лицам и корпорациям. Ваша подготовка — это ваш личный инвестиционный проект</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Смогу ли я пройти очный Verification Test под наблюдением</h4>
+                    <p>Да. Наша ценность — Preparation over shortcuts. Мы не продаем слитые ответы (которые регулярно меняются). Мы ставим вам навык, учим отсекать лишние данные в таблицах и быстро находить логические связи. Наработав этот скилл, вы легко сдадите контрольный тест под любым прокторингом</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Как работает система разделенной оплаты</h4>
+                    <p>Мы работаем на доверии и результат. На базовых тарифах вы вносите символические 30% аванса, чтобы получить доступ к диагностике. Основная сумма в 70% оплачивается только перед финальным этапом подготовки — когда вы уже увидели динамику своего роста</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <strong>ReadyEdge</strong>
+                    <p style="margin: 0;">© 2026 ReadyEdge. Все права защищены</p>
+                    <a href="https://t.me/readyedge_online" target="_blank" style="margin-top: 12px; font-weight: bold;">Написать в Telegram</a>
+                </div>
+                
+                <div class="footer-links">
+                    <strong>Реквизиты Исполнителя</strong>
+                    <span>Индивидуальный предприниматель Калинин Дмитрий Алексеевич</span>
+                    <span>ИНН: 772972503807</span>
+                    <span>ОГРНИП: 323774600746721</span>
+                    <span>Банк: АО «ТБанк»</span>
+                    <span>Юридический адрес: 119618, Россия, г. Москва, ул. Домостроительная, д. 14, кв. 146</span>
+                </div>
+
+                <div class="footer-links">
+                    <strong>Контакты</strong>
+                    <a href="mailto:readyedge.online@gmail.com">E-mail: readyedge.online@gmail.com</a>
+                    <!-- ЗАМЕНИТЕ НОМЕР ТЕЛЕФОНА НИЖЕ НА ВАШ АКТУАЛЬНЫЙ РАБОЧИЙ НОМЕР -->
+                    <a href="tel:+79990000000">Телефон: +7 (999) 000-00-00</a> 
+                    <a href="https://readyedge.online">Сайт: readyedge.online</a>
+                </div>
+
+                <div class="footer-links">
+                    <strong>Юридическая информация</strong>
+                    <a href="/docs/oferta.pdf" target="_blank">Публичная оферта</a>
+                    <a href="/docs/pd.pdf" target="_blank">Политика обработки ПДн</a>
+                    <a href="/docs/soglasie.pdf" target="_blank">Согласие на обработку ПДн</a>
+                    <a href="/docs/adv.pdf" target="_blank">Согласие на рассылку</a>
+                    <a href="/docs/refund.pdf" target="_blank">Условия возврата денежных средств</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; font-size: 11px; opacity: 0.5;">
+                Проект ReadyEdge не является кадровым агентством и не аффилирован с провайдерами систем тестирования
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
